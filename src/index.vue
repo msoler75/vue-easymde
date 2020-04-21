@@ -4,7 +4,7 @@
       class="vue-simplemde-textarea"
       :name="name"
       :value="modelVal"
-      @input="handleInput"
+      @input="handleInput($event.target.value)"
     />
   </div>
 </template>
@@ -93,7 +93,8 @@ export default {
     },
     bindingEvents() {
       this.easymde.codemirror.on('change', () => {
-        this.$emit('input', this.easymde.value());
+        const val = this.easymde.value();
+        this.handleInput(val);
       });
     },
     addPreviewClass(className) {
@@ -103,8 +104,9 @@ export default {
       preview.className = `editor-preview ${className}`;
       wrapper.appendChild(preview);
     },
-    handleInput(e) {
-      this.$emit('input', e.target.value);
+    handleInput(val) {
+      this.isValueUpdateFromInner = true;
+      this.$emit('input', val);
     },
   },
   destroyed() {
@@ -112,7 +114,10 @@ export default {
   },
   watch: {
     value(val) {
-      if (val === this.easymde.value()) return;
+      if (this.isValueUpdateFromInner) {
+        this.isValueUpdateFromInner = false;
+        return;
+      }
       this.easymde.value(val);
       this.modelVal = val;
     },
