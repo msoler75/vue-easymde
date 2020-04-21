@@ -45,6 +45,9 @@ export default {
         return {};
       },
     },
+    previewRender: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -65,6 +68,7 @@ export default {
       const configs = Object.assign({
         element: this.$el.firstElementChild,
         initialValue: this.value,
+        previewRender: this.previewRender,
         renderingConfig: {},
       }, this.configs);
 

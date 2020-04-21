@@ -64,6 +64,7 @@ Vue.component('vue-easymde', VueEasymde)
 | highlight     | Boolean | false   | Is it open to highlight                       |
 | sanitize      | Boolean | false   | HTML that does not render input after opening |
 | configs       | Object  | {}      | [EasyMDE's config](#configuration)          |
+| previewRender | Function | - | configs.previewRender |
 
 ## Markdown style
 > e.g. use Github's markdown style
