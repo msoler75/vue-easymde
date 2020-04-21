@@ -15,71 +15,56 @@
 </template>
 
 <script>
-  import VueEasymde from 'vue-easymde';
+import VueEasymde from 'vue-easymde';
 
-  // Base example
-  export default {
-    components: {
-      VueEasymde,
-    },
-    data() {
-      return {
-        content: '',
-        configs: {
-          spellChecker: false // disable spell check
-        },
-      };
-    },
-  };
-
-  // Complete example
-  export default {
-    components: {
-      VueEasymde,
-    },
-    data() {
-      return {
-        content: '',
-        configs: {
-          status: false, // disable the status bar at the bottom
-          spellChecker: false // disable spell check
-        },
-      };
-    },
-    computed: {
-      easymde() {
-        return this.$refs.markdownEditor.easymde;
+// Complete example
+export default {
+  components: {
+    VueEasymde,
+  },
+  data() {
+    return {
+      content: '',
+      configs: {
+        status: false, // disable the status bar at the bottom
+        spellChecker: false // disable spell check
       },
+    };
+  },
+  computed: {
+    easymde() {
+      return this.$refs.markdownEditor.easymde;
     },
-    mounted() {
-      console.log(this.easymde);
-      this.easymde.togglePreview();
+  },
+  mounted() {
+    console.log(this.easymde);
+    this.easymde.togglePreview();
 
-      // 'change' event has bound, via @input attache an event listener
-      // You can attache events in this [list](https://codemirror.net/doc/manual.html#events) yourself if necessary
-      this.easymde.codemirror.on('beforeChange', (instance, changeObj) => {
-        // do some things
-      });
+    // 'change' event has bound, via @input attache an event listener
+    // You can attache events in this [list](https://codemirror.net/doc/manual.html#events) yourself if necessary
+    this.easymde.codemirror.on('beforeChange', (instance, changeObj) => {
+      // do some things
+    });
 
-      // remove EasyMDE, when component destroy will invoke
-      this.easymde = null;
+    // remove EasyMDE, when component destroy will invoke
+    this.easymde = null;
 
-      // some useful methods
-      this.$refs.markdownEditor.initialize(); // init
-      this.easymde.toTextArea();
-      this.easymde.isPreviewActive(); // returns boolean
-      this.easymde.isSideBySideActive(); // returns boolean
-      this.easymde.isFullscreenActive(); // returns boolean
-      this.easymde.clearAutosavedValue(); // no returned value
-      this.easymde.markdown(this.content); // returns parsed html
-      this.easymde.codemirror.refresh(); // refresh codemirror
+    // some useful methods
+    this.$refs.markdownEditor.initialize(); // init
+    this.easymde.toTextArea();
+    this.easymde.isPreviewActive(); // returns boolean
+    this.easymde.isSideBySideActive(); // returns boolean
+    this.easymde.isFullscreenActive(); // returns boolean
+    this.easymde.clearAutosavedValue(); // no returned value
+    this.easymde.markdown(this.content); // returns parsed html
+    this.easymde.codemirror.refresh(); // refresh codemirror
+  },
+  methods: {
+    handleInput() {
+      // do some things
     },
-    methods: {
-      handleInput() {
-        // do some things
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style>
