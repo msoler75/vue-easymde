@@ -1,6 +1,11 @@
 <template>
   <div class="vue-easymde">
-    <textarea :name="name"></textarea>
+    <textarea
+      class="vue-simplemde-textarea"
+      :name="name"
+      :value="modelVal"
+      @input="handleInput"
+    />
   </div>
 </template>
 
@@ -40,6 +45,11 @@ export default {
         return {};
       },
     },
+  },
+  data() {
+    return {
+      modelVal: '',
+    };
   },
   mounted() {
     if (this.autoinit) this.initialize();
@@ -93,6 +103,9 @@ export default {
       preview.className = `editor-preview ${className}`;
       wrapper.appendChild(preview);
     },
+    handleInput(e) {
+      this.$emit('input', e.target.value);
+    },
   },
   destroyed() {
     this.easymde = null;
@@ -101,6 +114,7 @@ export default {
     value(val) {
       if (val === this.easymde.value()) return;
       this.easymde.value(val);
+      this.modelVal = val;
     },
   },
 };
