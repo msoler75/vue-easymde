@@ -25,7 +25,7 @@
   "repository": "github:NikulinIlya/vue-easymde",
   "license": "MIT",
   "dependencies": {
-    "easymde": "^2.8.0",
+    "easymde": "^2.10.1",
     "marked": "^0.7.0"
   },
   "devDependencies": {
