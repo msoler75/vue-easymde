@@ -44,11 +44,11 @@ export default {
   mounted() {
     if (this.autoinit) this.initialize();
   },
-  activated() {
+  deactivated() {
     const editor = this.easymde;
     if (!editor) return;
-    const isActive = editor.isSideBySideActive() || editor.isPreviewActive();
-    if (isActive) editor.toggleFullScreen();
+    const isFullScreen = editor.codemirror.getOption('fullScreen');
+    if (isFullScreen) editor.toggleFullScreen();
   },
   methods: {
     initialize() {
