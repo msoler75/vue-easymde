@@ -64,6 +64,17 @@ Vue.component('vue-easymde', VueEasymde)
 | highlight     | Boolean | false       | Доступно для выделения                                   |
 | sanitize      | Boolean | false       | HTML, который не отображает ввод после открытия          |
 | configs       | Object  | {}          | [Конфигурация EasyMDE](#Конфигурация)                   |
+| previewRender | Function | - | configs.previewRender |
+
+## Методы
+
+``` js
+this.$refs.markdownEditor.simplemde.togglePreview();
+```
+
+[examples/index.vue](./examples/index.vue)
+
+[simplemde.js](https://github.com/sparksuite/simplemde-markdown-editor/blob/6abda7ab68cc20f4aca870eb243747951b90ab04/src/js/simplemde.js#L1908-L2026)
 
 ## Стиль Markdown
 > Например, стиль markdown от Github
