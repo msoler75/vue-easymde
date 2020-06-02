@@ -55,7 +55,7 @@ Vue.component('vue-easymde', VueEasymde)
 
 ## Props
 
-| Свойство      | Тип     | По умолчанию | Описание                                                |
+| Событие       | Тип     | По умолчанию| Описание                                                 |
 | ------------- | ------- | ----------- | -------------------------------------------------------- |
 | value         | String  | None        | Начальное значение, может быть использован хук v-model   |
 | name          | String  | None        | Название контроля                                        |
@@ -63,8 +63,16 @@ Vue.component('vue-easymde', VueEasymde)
 | autoinit      | Boolean | true        | Автоматическая инициализация                             |
 | highlight     | Boolean | false       | Доступно для выделения                                   |
 | sanitize      | Boolean | false       | HTML, который не отображает ввод после открытия          |
-| configs       | Object  | {}          | [Конфигурация EasyMDE](#Конфигурация)                   |
+| configs       | Object  | {}          | [Конфигурация EasyMDE](#Конфигурация)                    |
 | previewRender | Function | - | configs.previewRender |
+
+## События (Events)
+
+| свойство | описание | аргументы |
+| ----| ----- | ---- |
+| input | Срабатывает при изменении входного значения | value |
+| blur | Срабатывает при снятии ввода с фокуса | value |
+| initialized | Срабатывает после завершения инициализации | simplemde |
 
 ## Методы
 

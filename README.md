@@ -55,7 +55,7 @@ Vue.component('vue-easymde', VueEasymde)
 
 ## Props
 
-| property      | type    | default | describe                                      |
+| event      | type    | default | describe                                      |
 | ------------- | ------- | ------- | --------------------------------------------- |
 | value         | String  | None    | Initial value, v-model binding can be used    |
 | name          | String  | None    | The name of the control.                      |
@@ -65,6 +65,14 @@ Vue.component('vue-easymde', VueEasymde)
 | sanitize      | Boolean | false   | HTML that does not render input after opening |
 | configs       | Object  | {}      | [EasyMDE's config](#configuration)          |
 | previewRender | Function | - | configs.previewRender |
+
+## Events
+
+| property | describe | arguments |
+| ----| ----- | ---- |
+| input | Triggered when the Input value changes | value |
+| blur | Triggered when the Input loses focus | value |
+| initialized | Triggered when initialization is complete | simplemde |
 
 ## Methods
 
