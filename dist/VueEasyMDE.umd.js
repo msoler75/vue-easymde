@@ -2549,12 +2549,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3c722dc6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/index.vue?vue&type=template&id=697a0944&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"24c2ee26-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/index.vue?vue&type=template&id=76e638ca&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-easymde"},[_c('textarea',{staticClass:"vue-simplemde-textarea",attrs:{"name":_vm.name},domProps:{"value":_vm.modelVal},on:{"input":function($event){return _vm.handleInput($event.target.value)}}})])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/index.vue?vue&type=template&id=697a0944&
+// CONCATENATED MODULE: ./src/index.vue?vue&type=template&id=76e638ca&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__("a4d3");
@@ -2719,6 +2719,8 @@ var external_marked_default = /*#__PURE__*/__webpack_require__.n(external_marked
   },
   methods: {
     initialize: function initialize() {
+      var _this = this;
+
       var configs = _objectSpread2({
         element: this.$el.firstElementChild,
         initialValue: this.value,
@@ -2747,14 +2749,22 @@ var external_marked_default = /*#__PURE__*/__webpack_require__.n(external_marked
       this.addPreviewClass(className); // 绑定事件 \ Binding event
 
       this.bindingEvents();
+      this.$nextTick(function () {
+        _this.$emit('initialized', _this.easymde);
+      });
     },
     bindingEvents: function bindingEvents() {
-      var _this = this;
+      var _this2 = this;
 
       this.easymde.codemirror.on('change', function () {
-        var val = _this.easymde.value();
+        var val = _this2.easymde.value();
 
-        _this.handleInput(val);
+        _this2.handleInput(val);
+      });
+      this.easymde.codemirror.on('blur', function () {
+        var val = _this2.easymde.value();
+
+        _this2.handleBlur(val);
       });
     },
     addPreviewClass: function addPreviewClass(className) {
@@ -2767,6 +2777,10 @@ var external_marked_default = /*#__PURE__*/__webpack_require__.n(external_marked
     handleInput: function handleInput(val) {
       this.isValueUpdateFromInner = true;
       this.$emit('input', val);
+    },
+    handleBlur: function handleBlur(val) {
+      this.isValueUpdateFromInner = true;
+      this.$emit('blur', val);
     }
   },
   destroyed: function destroyed() {
@@ -2854,7 +2868,12 @@ function normalizeComponent (
     options._ssrRegister = hook
   } else if (injectStyles) {
     hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
       : injectStyles
   }
 
