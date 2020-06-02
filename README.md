@@ -55,7 +55,7 @@ Vue.component('vue-easymde', VueEasymde)
 
 ## Props
 
-| event      | type    | default | describe                                      |
+| property      | type    | default | describe                                      |
 | ------------- | ------- | ------- | --------------------------------------------- |
 | value         | String  | None    | Initial value, v-model binding can be used    |
 | name          | String  | None    | The name of the control.                      |
@@ -68,7 +68,7 @@ Vue.component('vue-easymde', VueEasymde)
 
 ## Events
 
-| property | describe | arguments |
+| event | describe | arguments |
 | ----| ----- | ---- |
 | input | Triggered when the Input value changes | value |
 | blur | Triggered when the Input loses focus | value |
