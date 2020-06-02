@@ -95,11 +95,20 @@ export default {
 
       // 绑定事件 \ Binding event
       this.bindingEvents();
+
+      this.$nextTick(() => {
+        this.$emit('initialized', this.easymde);
+      });
     },
     bindingEvents() {
       this.easymde.codemirror.on('change', () => {
         const val = this.easymde.value();
         this.handleInput(val);
+      });
+
+      this.easymde.codemirror.on('blur', () => {
+        const val = this.easymde.value();
+        this.handleBlur(val);
       });
     },
     addPreviewClass(className) {
@@ -112,6 +121,10 @@ export default {
     handleInput(val) {
       this.isValueUpdateFromInner = true;
       this.$emit('input', val);
+    },
+    handleBlur(val) {
+      this.isValueUpdateFromInner = true;
+      this.$emit('blur', val);
     },
   },
   destroyed() {
