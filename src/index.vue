@@ -3,7 +3,7 @@
     <textarea
       class="vue-simplemde-textarea"
       :name="name"
-      :value="modelVal"
+      :value="value"
       @input="handleInput($event.target.value)"
     />
   </div>
@@ -51,7 +51,7 @@ export default {
   },
   data() {
     return {
-      modelVal: '',
+      isValueUpdateFromInner: false,
     };
   },
   mounted() {
@@ -101,7 +101,10 @@ export default {
       });
     },
     bindingEvents() {
-      this.easymde.codemirror.on('change', () => {
+      this.easymde.codemirror.on('change', (instance, changeObj) => {
+        if (changeObj.origin === 'setValue') {
+          return;
+        }
         const val = this.easymde.value();
         this.handleInput(val);
       });
@@ -134,10 +137,9 @@ export default {
     value(val) {
       if (this.isValueUpdateFromInner) {
         this.isValueUpdateFromInner = false;
-        return;
+      } else {
+        this.easymde.value(val);
       }
-      this.easymde.value(val);
-      this.modelVal = val;
     },
   },
 };
