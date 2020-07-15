@@ -3,6 +3,7 @@
   "version": "1.2.1",
   "description": "EasyMDE - Markdown Editor component for Vue.js",
   "main": "src/index.vue",
+  "typings": "types/index.d.ts",
   "scripts": {
     "build": "vue-cli-service build --target lib --name VueEasyMDE src/index.vue",
     "postbuild": "node hack.js",
@@ -20,7 +21,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "types"
   ],
   "repository": "github:NikulinIlya/vue-easymde",
   "license": "MIT",
