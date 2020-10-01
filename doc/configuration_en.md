@@ -15,6 +15,7 @@
 - **hideIcons**: An array of icon names to hide. Can be used to hide specific icons shown by default without completely customizing the toolbar.
 - **indentWithTabs**: If set to `false`, indent using spaces instead of tabs. Defaults to `true`.
 - **initialValue**: If set, will customize the initial value of the editor.
+- **previewImagesInEditor**: - EasyMDE will show preview of images, `true` by default, use `false` to disable.
 - **insertTexts**: Customize how certain buttons that insert text behave. Takes an array with two elements. The first element will be the text inserted before the cursor or highlight, and the second element will be inserted after. For example, this is the default link value: `["[", "](http://)"]`.
   - horizontalRule
   - image
@@ -27,6 +28,9 @@
   - **allowAtxHeaderWithoutSpace**: If set to `true`, will render headers without a space after the `#`. Defaults to `false`.
   - **strikethrough**: If set to `false`, will not process GFM strikethrough syntax. Defaults to `true`.
   - **underscoresBreakWords**: If set to `true`, let underscores be a delimiter for separating words. Defaults to `false`.
+- **overlayMode**: Pass a custom codemirror [overlay mode](https://codemirror.net/doc/manual.html#modeapi) to parse and style the Markdown during editing.
+  - **mode**: A codemirror mode object.
+  - **combine**: If set to `false`, will *replace* CSS classes returned by the default Markdown mode. Otherwise the classes returned by the custom mode will be combined with the classes returned by the default mode. Defaults to `true`.
 - **placeholder**: If set, displays a custom placeholder message.
 - **previewClass**: A string or array of strings that will be applied to the preview screen when activated. Defaults to `"editor-preview"`.
 - **previewRender**: Custom function for parsing the plaintext Markdown and returning HTML. Used when user previews.
@@ -42,7 +46,7 @@
 - **imageUploadEndpoint**: The endpoint where the images data will be sent, via an asynchronous *POST* request. The server is supposed to save this image, and return a json response.
      - if the request was successfully processed (HTTP 200-OK): `{"data": {"filePath": "<filePath>"}}` where *filePath* is the relative path of the image;
      - otherwise: `{"error": "<errorCode>"}`, where *errorCode* can be `noFileGiven` (HTTP 400), `typeNotAllowed` (HTTP 415), `fileTooLarge` (HTTP 413) or `importError` (see *errorMessages* below). No default value.
-- **imageCSRFToken**: CSRF token to include with AJAX call to upload image. For instance used with Django backend. 
+- **imageCSRFToken**: CSRF token to include with AJAX call to upload image. For instance used with Django backend.
 - **imageTexts**: Texts displayed to the user (mainly on the status bar) for the import image feature, where `#image_name#`, `#image_size#` and `#image_max_size#` will replaced by their respective values, that can be used for customization or internationalization:
     - **sbInit**: Status message displayed initially if `uploadImage` is set to `true`. Defaults to `Attach files by drag and dropping or pasting from clipboard.`.
     - **sbOnDragEnter**: Status message displayed when the user drags a file to the text area. Defaults to `Drop image to upload it.`.
@@ -288,6 +292,8 @@ var easymde = new EasyMDE();
 easymde.toTextArea();
 easymde = null;
 ```
+
+If you need to remove installed listeners (when editor not needed anymore), call `easymde.cleanup()`
 
 ## Useful methods
 The following self-explanatory methods may be of use while developing with EasyMDE.
