@@ -1,7 +1,11 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
 module.exports = {
   css: {
     extract: false,
   },
+  productionSourceMap: false,
   configureWebpack: {
     externals: {
       easymde: {
@@ -12,5 +16,14 @@ module.exports = {
       },
       marked: 'marked',
     },
+    module: {
+      rules: [{
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      }],
+    },
+    plugins: [
+      new VueLoaderPlugin(),
+    ],
   },
 };
