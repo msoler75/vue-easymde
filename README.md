@@ -77,7 +77,7 @@ Vue.component('vue-easymde', VueEasymde)
 ## Methods
 
 ``` js
-this.$refs.markdownEditor.simplemde.togglePreview();
+this.$refs.markdownEditor.easymde.togglePreview();
 ```
 
 [examples/index.vue](./examples/index.vue)
