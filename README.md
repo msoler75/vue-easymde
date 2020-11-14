@@ -72,7 +72,7 @@ Vue.component('vue-easymde', VueEasymde)
 | ----| ----- | ---- |
 | input | Triggered when the Input value changes | value |
 | blur | Triggered when the Input loses focus | value |
-| initialized | Triggered when initialization is complete | simplemde |
+| initialized | Triggered when initialization is complete | easymde |
 
 ## Methods
 

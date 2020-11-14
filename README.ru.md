@@ -72,12 +72,12 @@ Vue.component('vue-easymde', VueEasymde)
 | ----| ----- | ---- |
 | input | Срабатывает при изменении входного значения | value |
 | blur | Срабатывает при снятии ввода с фокуса | value |
-| initialized | Срабатывает после завершения инициализации | simplemde |
+| initialized | Срабатывает после завершения инициализации | easymde |
 
 ## Методы
 
 ``` js
-this.$refs.markdownEditor.simplemde.togglePreview();
+this.$refs.markdownEditor.easymde.togglePreview();
 ```
 
 [examples/index.vue](./examples/index.vue)
