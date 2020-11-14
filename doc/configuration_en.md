@@ -21,6 +21,7 @@
   - image
   - link
   - table
+- **lineNumbers**: If set to `true`, enables line numbers in the editor.
 - **lineWrapping**: If set to `false`, disable line wrapping. Defaults to `true`.
 - **minHeight**: Sets the minimum height for the composition area, before it starts auto-growing. Should be a string containing a valid CSS value like `"500px"`. Dafaults to `"300px"`.
 - **onToggleFullScreen**: A function that gets called when the editor's fullscreen mode is toggled. The function will be passed a boolean as parameter, `true` when the editor is currently going into fullscreen mode, or `false`.
