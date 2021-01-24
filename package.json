@@ -27,7 +27,7 @@
   "repository": "github:NikulinIlya/vue-easymde",
   "license": "MIT",
   "dependencies": {
-    "easymde": "^2.13.0",
+    "easymde": "github:msoler75/easy-markdown-editor",
     "marked": "^1.2.7"
   },
   "devDependencies": {
